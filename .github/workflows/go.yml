@@ -8,6 +8,6 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - name: Make build
-        uses: actions/checkout@v2
-        run: go build main.go
+      - name : Make build
+        uses : actions/checkout@v2
+          run: go build main.go
