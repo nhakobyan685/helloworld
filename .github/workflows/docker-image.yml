@@ -19,23 +19,44 @@
 #         docker login -u nhakobyan685 -p ${{ secrets.DOCKER_TOKEN }}
 #         docker image push nhakobyan685/hellogo:latest
 # -----------------------
-name: ci
+# name: ci
 
+# on:
+#   push:
+#     branches:
+#       - master
+# jobs:
+#   docker:
+#     runs-on: ubuntu-latest
+#     steps:
+#       - name: Build and push
+#         uses: docker/build-push-action@v3
+#         with:
+#           push: true
+#           username: nhakobyan685
+#           password: ${{ secrets.DOCKER_TOKEN }}
+#           repository: nhakobyan685
+#           tags  :  goapp:latest
 on:
   push:
-    branches:
-      - master
 jobs:
-  docker:
+  Docker:
+    name: Build container
     runs-on: ubuntu-latest
     steps:
-      - name: Build and push
-        uses: docker/build-push-action@v3
+      - name: Checkout code
+        uses: actions/checkout@v3
+      - name: Login in Docker hub
+        uses: docker/login-action@v1
         with:
-          push: true
-          username: nhakobyan685
+          username: nhakobyan685                  
           password: ${{ secrets.DOCKER_TOKEN }}
-          repository: nhakobyan685
-          tags  :  goapp:latest
+      - name: Build and push to Docker hub
+        uses: docker/build-push-action@v2
+        with:
+          context: .
+          push: true
+          tags: nhakobyan685/goapp:latest, nhakobyan685/goapp:${{ github.run_number }}
+
 
 
