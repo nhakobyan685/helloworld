@@ -34,7 +34,7 @@ jobs:
         uses: docker/build-push-action@v3
         with:
           username: nhakobyan685
-          password: ${{ secret.DOCKER_TOKEN }}
+          password: ${{ secrets.DOCKER_TOKEN }}
           repository: nhakobyan685
           tags  :  goapp:latest
 
