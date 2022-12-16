@@ -35,6 +35,7 @@ jobs:
         with:
           username: nhakobyan685
           password: ${{ secret.DOCKER_TOKEN }}
-          repository: nhakobyan685/goapp
-          tags    : latest, ${{ github.run_number }}
+          repository: nhakobyan685
+          tags  :  goapp:latest
+
 
